@@ -1,0 +1,320 @@
+:root {
+    --primary-color: #7F7FD5;
+    --secondary-color: #86A8E7;
+    --accent-color: #91EAE4;
+    --text-color: #4a4a4a;
+    --white-glass: rgba(255, 255, 255, 0.7);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+    background: #f0f2f5;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 배경 애니메이션 (움직이는 원들) */
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.6;
+    animation: moveBlob 20s infinite alternate;
+}
+
+.blob:nth-child(1) {
+    width: 400px;
+    height: 400px;
+    background: #ff9a9e;
+    top: -100px;
+    left: -100px;
+    animation-delay: 0s;
+}
+
+.blob:nth-child(2) {
+    width: 300px;
+    height: 300px;
+    background: #a18cd1;
+    bottom: -50px;
+    right: -50px;
+    animation-delay: -5s;
+}
+
+.blob:nth-child(3) {
+    width: 200px;
+    height: 200px;
+    background: #fbc2eb;
+    top: 40%;
+    left: 60%;
+    animation-delay: -10s;
+}
+
+@keyframes moveBlob {
+    from {
+        transform: translate(0, 0) scale(1);
+    }
+
+    to {
+        transform: translate(20px, -20px) scale(1.1);
+    }
+}
+
+/* 메인 카드 (Glassmorphism) */
+.container {
+    background: var(--white-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    padding: 50px 30px;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+h1 {
+    font-family: 'Fredoka', sans-serif;
+    color: #5c5c99;
+    font-size: 2.2em;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.subtitle {
+    color: #777;
+    font-size: 1.1em;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.screen {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 버튼 스타일 */
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 1.2em;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    max-width: 300px;
+}
+
+button:active {
+    transform: scale(0.96);
+    box-shadow: 0 5px 10px rgba(118, 75, 162, 0.2);
+}
+
+/* 질문 화면 스타일 */
+.progress-container {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.progress-dot {
+    width: 8px;
+    height: 8px;
+    background: #ddd;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.progress-dot.active {
+    background: #764ba2;
+    transform: scale(1.3);
+}
+
+.question-number {
+    font-family: 'Fredoka', sans-serif;
+    color: #86A8E7;
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.question-label {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+    word-break: keep-all;
+}
+
+.question-hint {
+    font-size: 0.95em;
+    color: #888;
+    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+/* 입력창 디자인 변경 */
+input[type="number"] {
+    width: 100%;
+    max-width: 200px;
+    padding: 15px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2em;
+    color: #5c5c99;
+    background: #fff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    margin-bottom: 10px;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #86A8E7;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(134, 168, 231, 0.2);
+}
+
+input[type="number"]::placeholder {
+    color: #ddd;
+    font-size: 0.5em;
+    vertical-align: middle;
+}
+
+/* 스피너 제거 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.error-message {
+    height: 25px;
+    color: #ff6b6b;
+    font-size: 0.9em;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 결과 화면 */
+.result-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+.result-age {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 5em;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 10px 0;
+    line-height: 1;
+}
+
+.result-unit {
+    font-size: 0.3em;
+    color: #764ba2;
+    -webkit-text-fill-color: initial;
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20%,
+    60% {
+        transform: translateX(-5px);
+    }
+
+    40%,
+    80% {
+        transform: translateX(5px);
+    }
+}
+
+.shake {
+    animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+}
+
+/* Confetti */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    z-index: 100;
+    pointer-events: none;
+}

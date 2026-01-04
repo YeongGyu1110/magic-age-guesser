@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="icon" href="favicon.png" />
+    <meta property="og:title" content="Magic Age Guesser">
+    <meta property="og:description" content="단 5개의 질문으로 당신의 나이를 맞출 수 있습니다.">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:type" content="website">
+    <title>Magic Age Guesser</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Noto+Sans+KR:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-blobs">
+        <div class="blob"></div>
+        <div class="blob"></div>
+        <div class="blob"></div>
+    </div>
+
+    <div class="container">
+        <div class="screen active" id="startScreen">
+            <div style="font-size: 3em; margin-bottom: 10px;">🔮</div>
+            <h1>나이 맞추기</h1>
+            <p class="subtitle">마법같은 질문 몇 가지로<br>당신의 나이를 맞춰볼게요!</p>
+            <button class="start-btn" onclick="startQuiz()">시작하기</button>
+        </div>
+
+        <div class="screen" id="questionScreen">
+            <div class="progress-container" id="progressDots"></div>
+            <div class="question-number" id="questionNumber">Q. 01</div>
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="question-container">
+                    <label class="question-label" id="questionLabel" for="answerInput"></label>
+                    <p class="question-hint" id="questionHint"></p>
+                    <input type="number" id="answerInput" inputmode="numeric" pattern="[0-9]*" placeholder="숫자 입력"
+                        autocomplete="off">
+                    <div class="error-message" id="errorMessage"></div>
+                </div>
+                <button type="submit" id="nextBtn">확인</button>
+            </form>
+        </div>
+
+        <div class="screen" id="resultScreen">
+            <div class="result-icon">🎉</div>
+            <h1 style="font-size: 1.8em;">분석 완료!</h1>
+            <p class="result-message">당신의 나이는 바로...</p>
+            <div class="result-age" id="resultAge">
+                0<span class="result-unit">세</span>
+            </div>
+            <p class="result-message" style="margin-bottom: 30px; font-size: 0.9em; color: #888;">
+                정확하죠? 제 마법은 틀리지 않아요 😎
+            </p>
+            <button class="restart-btn" onclick="restart()"
+                style="background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%); box-shadow: 0 10px 20px rgba(255, 154, 158, 0.4);">
+                다시 하기
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
